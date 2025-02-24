@@ -1,0 +1,21 @@
+@import '../styles/styles.scss';
+
+header {
+    padding-top: 9.4vw;
+
+    img {
+      width: 174px;
+      height: 24px;
+      margin: 0 auto;
+    }
+}
+
+main {
+    width: 95%;
+    background-color: $grey-400;
+    border: 1px solid $grey-300;
+    filter: drop-shadow(0px 4px 8px #00000025);
+    border-radius: 12px;
+    margin: 0 auto;
+    margin-top: 96px;
+}
