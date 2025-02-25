@@ -3,6 +3,10 @@ export interface CountryBaseInfo {
     name: {
         common: string,
     },
+    flags: {
+        svg: string,
+        alt?: string | undefined
+    },
     cca3: string,
     population: number,
     area: number,  
@@ -17,10 +21,6 @@ export interface CountryListInfo extends CountryBaseInfo {
 
 /* detail view interface */
 export interface CountryDetailInfo extends CountryBaseInfo {
-    flags: {
-        svg: string,
-        alt: string
-    },
     name: {
         common: string,
         official: string

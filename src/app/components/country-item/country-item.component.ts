@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CountryListInfo } from '../../interfaces/country-info';
 
 @Component({
   selector: 'app-country-item',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './country-item.component.scss'
 })
 export class CountryItemComponent {
-
+  @Input() countryItem!:CountryListInfo;
 }

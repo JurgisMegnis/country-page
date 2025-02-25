@@ -1,14 +1,18 @@
+<section class="top">
+    <div class="search-container">
+
+    </div>
+</section>
 <section class="left">
 
 </section>
 <section class="right">
-    <div class="search-container">
-
-    </div>
     <div class="country-list-container">
         <div class="country-list-header"></div>
         <div class="country-list">
-            <app-country-item></app-country-item>
+            @for (country of countryItemList; track country) {
+                <app-country-item [countryItem]="country"></app-country-item>
+            }
         </div>
     </div>
 </section>
