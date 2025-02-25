@@ -8,7 +8,13 @@
 </section>
 <section class="right">
     <div class="country-list-container">
-        <div class="country-list-header"></div>
+        <div class="country-list-header">
+            <p class="flag">Flag</p>
+            <p class="name">Name</p>
+            <p class="population">Population</p>
+            <p class="area">Area(km²)</p>
+            <p class="region">Region</p>
+        </div>
         <div class="country-list">
             @for (country of countryItemList; track country) {
                 <app-country-item [countryItem]="country"></app-country-item>

@@ -2,6 +2,16 @@
 
 .right {
     .country-list-container {
+        .country-list-header {
+            display: grid;
+            grid-template-columns: 0.3fr repeat(4, 1fr);
+            align-items: center;
+            color: $grey-100;
+            @include context-medium;
+            padding-bottom: 16px;
+            border-bottom: 2px solid $grey-300;
+        }
+
         .country-list {
             margin-top: 16px;
         }

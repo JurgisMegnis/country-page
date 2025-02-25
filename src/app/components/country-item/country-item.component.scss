@@ -6,6 +6,7 @@
     display: grid;
     grid-template-columns: 0.3fr repeat(4, 1fr);
     align-items: center;
+    margin-bottom: 24px;
     color: $grey-100;
     @include body-medium;
     height: 38px;
