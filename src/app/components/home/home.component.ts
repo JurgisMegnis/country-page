@@ -12,13 +12,25 @@ import { CountriesService } from "../../services/countries.service";
 })
 export class HomeComponent implements OnInit {
   countryItemList: CountryListInfo[] = [];
+  isLoading: boolean = false;
+  error: string | null = null;
   countriesService: CountriesService = inject(CountriesService);
 
   ngOnInit(): void {
     this.loadCountryItems();
   }
 
-  loadCountryItems(): void {
-    this.countryItemList = this.countriesService.getAllCountryListData()
+  loadCountryItems() {
+    this.countriesService.getAllCountryListData()
+      .subscribe({
+        next: (data) => {
+          this.countryItemList = data;
+          this.isLoading = false;
+        },
+        error: (error) => {
+          this.error = error.message;
+          this.isLoading = false;
+        }
+      })
   }
 }
