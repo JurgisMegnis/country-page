@@ -14,6 +14,21 @@
 
         .country-list {
             margin-top: 16px;
+
+            .country-item-placeholder {
+                height: 50px; /* match your country-item height */
+                background: $grey-100;
+                margin-bottom: 12px;
+            }
+
+            .country-item-loader {
+                height: 50px; /* match your country-item height */
+                display: flex;
+                align-items: center;
+                padding: 0 16px;
+                background: red;
+                margin-bottom: 12px;
+            }
         }
     }
 }

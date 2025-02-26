@@ -16,9 +16,24 @@
             <p class="region">Region</p>
         </div>
         <div class="country-list">
-            @for (country of countryItemList; track country) {
-                <app-country-item [countryItem]="country"></app-country-item>
+            @if (error) {
+                <p>{{error}}</p>
+            } @else {
+                @for (country of countryItemList; track country) {
+                @defer (on viewport) {
+                    <app-country-item [countryItem]="country"></app-country-item>
+                } @loading (after 5s) {
+                    <section class="country-item-loader"></section>
+                }
+                @placeholder {
+                    <section class="country-item-placeholder"></section>
+                }
+                @error {
+                    <p>Error loading component</p>
+                }
             }
+            }
+            
         </div>
     </div>
 </section>

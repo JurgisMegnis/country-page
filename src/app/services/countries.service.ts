@@ -21,7 +21,7 @@ export class CountriesService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    let errorMessage = 'An unknown error occured';
+    let errorMessage = 'An unknown error occurred';
 
     if (error.error instanceof ErrorEvent) {
       // client side error
