@@ -1,0 +1,20 @@
+@import '../../../styles/styles.scss';
+
+button {
+    background-image: linear-gradient(165deg, #5F8CED, $blue);
+    box-shadow: inset 0 2px 1px #7BA0ED, 
+                inset 0 -1.5px 1px #7BA0ED,
+                0 0 1px #243B6E;
+
+    padding: .75rem 64px;
+    border: none;
+    border-radius: 8px;
+    color: $grey-100;
+    @include label-medium;
+    cursor: pointer;
+
+    &:active {
+        box-shadow: 0 0 3px #100F0F;
+        background-image: linear-gradient(165deg, $blue, $blue);
+    }
+}
