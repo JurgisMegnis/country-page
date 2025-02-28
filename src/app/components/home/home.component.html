@@ -3,38 +3,40 @@
 
     </div>
 </section>
-<section class="left">
-
-</section>
-<section class="right">
-    <div class="country-list-container">
-        <div class="country-list-header">
-            <p class="flag">Flag</p>
-            <p class="name">Name</p>
-            <p class="population">Population</p>
-            <p class="area">Area(km²)</p>
-            <p class="region">Region</p>
-        </div>
-        <div class="country-list">
-            @for (country of countryItemList; track country.cca3) {
-                @defer (on viewport; prefetch on idle) {
-                    <app-country-item [countryItem]="country"></app-country-item>
-                } @loading (after 100ms; minimum 500ms) {
-                    <section class="country-item-loader">
-                        <div class="shimmer"></div>
-                    </section>
+<section class="bottom">
+    <section class="left">
+        <app-filters></app-filters>
+    </section>
+    <section class="right">
+        <div class="country-list-container">
+            <div class="country-list-header">
+                <p class="flag">Flag</p>
+                <p class="name">Name</p>
+                <p class="population">Population</p>
+                <p class="area">Area(km²)</p>
+                <p class="region">Region</p>
+            </div>
+            <div class="country-list">
+                @for (country of countryItemList; track country.cca3) {
+                    @defer (on viewport; prefetch on idle) {
+                        <app-country-item [countryItem]="country"></app-country-item>
+                    } @loading (after 100ms; minimum 500ms) {
+                        <section class="country-item-loader">
+                            <div class="shimmer"></div>
+                        </section>
+                    }
+                    @placeholder {
+                        <section class="country-item-placeholder">
+                        </section>
+                    }
+                } 
+                @if (error) {
+                    <div class="error">
+                        <p>{{error}}</p>
+                        <app-button value="Try again" (click)="loadCountryItems()"></app-button>
+                    </div>
                 }
-                @placeholder {
-                    <section class="country-item-placeholder">
-                    </section>
-                }
-            } 
-            @if (error) {
-                <div class="error">
-                    <p>{{error}}</p>
-                    <app-button value="Try again" (click)="loadCountryItems()"></app-button>
-                </div>
-            }
+            </div>
         </div>
-    </div>
+    </section>
 </section>

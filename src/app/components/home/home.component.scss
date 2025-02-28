@@ -1,65 +1,70 @@
 @import '../../../styles/styles.scss';
 
-.right {
-    .country-list-container {
-        .country-list-header {
-            display: grid;
-            grid-template-columns: 0.3fr repeat(4, 1fr);
-            align-items: center;
-            color: $grey-100;
-            @include context-medium;
-            padding-bottom: 16px;
-            border-bottom: 2px solid $grey-300;
-        }
+.bottom {
+    display: grid;
+    grid-template-columns: 0.3fr 1fr;
 
-        .country-list {
-            margin-top: 16px;
-
-            .country-item-placeholder {
-                height: 50px; /* match your country-item height */
-                background: $grey-300;
-                margin-bottom: 12px;
-                border-radius: 12px;
-                position: relative;
-                overflow: hidden;
-            }
-
-            .country-item-loader {
-                height: 50px; /* match your country-item height */
-                background: $grey-300;
-                margin-bottom: 12px;
-                border-radius: 12px;
-                position: relative;
-
-                .shimmer {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 50%;
-                    height: 100%;
-
-                    background: linear-gradient(100deg,
-                        rgba(40, 43, 48, 0) 20%,
-                        rgba(108, 114, 127, 0.5) 50%,
-                        rgba(40, 43, 48, 0) 80%);
-
-                    animation: shimmer 3s infinite linear;
-                }
-            }
-
-            .error {
-                height: 30vh;
-                display: flex;
-                flex-direction: column;
-                gap: 16px;
-                justify-content: center;
+    .right {
+        .country-list-container {
+            .country-list-header {
+                display: grid;
+                grid-template-columns: 0.3fr repeat(4, 1fr);
                 align-items: center;
+                color: $grey-100;
+                @include context-medium;
+                padding-bottom: 16px;
+                border-bottom: 2px solid $grey-300;
+            }
 
-                p {
-                    color: $grey-100;
-                    @include body-semibold;
+            .country-list {
+                margin-top: 16px;
+
+                .country-item-placeholder {
+                    height: 50px; /* match your country-item height */
+                    background: $grey-300;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                .country-item-loader {
+                    height: 50px; /* match your country-item height */
+                    background: $grey-300;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                    position: relative;
+
+                    .shimmer {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 50%;
+                        height: 100%;
+
+                        background: linear-gradient(100deg,
+                            rgba(40, 43, 48, 0) 20%,
+                            rgba(108, 114, 127, 0.5) 50%,
+                            rgba(40, 43, 48, 0) 80%);
+
+                        animation: shimmer 3s infinite linear;
+                    }
+                }
+
+                .error {
+                    height: 30vh;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 16px;
+                    justify-content: center;
+                    align-items: center;
+
+                    p {
+                        color: $grey-100;
+                        @include body-semibold;
+                    }
                 }
             }
         }
     }
-}
+    }
