@@ -16,24 +16,25 @@
             <p class="region">Region</p>
         </div>
         <div class="country-list">
-            @if (error) {
-                <p>{{error}}</p>
-            } @else {
-                @for (country of countryItemList; track country) {
-                @defer (on viewport) {
+            @for (country of countryItemList; track country.cca3) {
+                @defer (on viewport; prefetch on idle) {
                     <app-country-item [countryItem]="country"></app-country-item>
-                } @loading (after 5s) {
-                    <section class="country-item-loader"></section>
+                } @loading (after 100ms; minimum 500ms) {
+                    <section class="country-item-loader">
+                        <div class="shimmer"></div>
+                    </section>
                 }
                 @placeholder {
-                    <section class="country-item-placeholder"></section>
+                    <section class="country-item-placeholder">
+                    </section>
                 }
-                @error {
-                    <p>Error loading component</p>
-                }
+            } 
+            @if (error) {
+                <div class="error">
+                    <p>{{error}}</p>
+                    <app-button value="Try again" (click)="loadCountryItems()"></app-button>
+                </div>
             }
-            }
-            
         </div>
     </div>
 </section>
