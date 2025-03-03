@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CountryListInfo } from '../interfaces/country-info';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, catchError, retry, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, retry, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +26,9 @@ export class CountriesService {
     if (error.error instanceof ErrorEvent) {
       // client side error
       errorMessage = `Client error: ${error.error.message}`;
+    } else if (error.status === 0) {
+      // network/connectivity error
+      errorMessage = 'Network error: Pleace check your internet connection';
     } else {
       // server side error
       errorMessage = `Server side error: ${error.status} ${error.statusText}`;
@@ -34,4 +37,5 @@ export class CountriesService {
     console.error('Countries API error:', errorMessage);
     return throwError(() => new Error(errorMessage));
   }
+
 }
