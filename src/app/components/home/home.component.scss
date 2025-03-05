@@ -3,6 +3,7 @@
 .bottom {
     display: grid;
     grid-template-columns: 0.3fr 1fr;
+    gap: 32px;
 
     .right {
         .country-list-container {

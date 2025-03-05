@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CountryListInfo } from '../interfaces/country-info';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { BehaviorSubject, Observable, catchError, retry, throwError } from 'rxjs';
+import { Observable, catchError, retry, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
