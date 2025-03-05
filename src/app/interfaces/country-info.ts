@@ -8,8 +8,8 @@ export interface CountryBaseInfo {
         alt?: string | undefined
     },
     cca3: string,
-    population: number,
-    area: number,  
+    population: string,
+    area: string,  
 }
 
 /* list view interface */

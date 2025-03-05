@@ -26,6 +26,9 @@ export class CountriesService {
     if (error.error instanceof ErrorEvent) {
       // client side error
       errorMessage = `Client error: ${error.error.message}`;
+    } else if (error.status === 0) {
+      // network/connectivity error
+      errorMessage = 'Network error: Pleace check your internet connection';
     } else {
       // server side error
       errorMessage = `Server side error: ${error.status} ${error.statusText}`;
@@ -34,4 +37,5 @@ export class CountriesService {
     console.error('Countries API error:', errorMessage);
     return throwError(() => new Error(errorMessage));
   }
+
 }

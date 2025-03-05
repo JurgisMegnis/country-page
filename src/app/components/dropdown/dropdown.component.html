@@ -1,0 +1,6 @@
+<label [for]="id">{{label}}</label>
+<select [formControl]="dropdownControl" [name]="label" [id]="id">
+    @for (option of options; track $index) {
+        <option [value]="option">{{option}}</option>
+    }
+</select>
