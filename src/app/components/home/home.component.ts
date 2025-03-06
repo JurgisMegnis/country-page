@@ -18,31 +18,25 @@ export class HomeComponent implements OnInit {
   filteredCountryItemList: CountryListInfo[] = [];
   error: string | null = null;
   countriesService: CountriesService = inject(CountriesService);
-
-  sortBySelection: string | null = '';
+  allRegions: string[] = []; // array to be passed to the filter component
+  sortBySelection: string | null = ''; // value from Sort By filter 
 
   ngOnInit(): void {
-    this.loadCountryItems();
-    /* this.filterSortBy; */
+     this.countriesService.loadCountryItems() 
+     this.countryItemList = this.countriesService.countries();
+     this.error = this.countriesService.error();
+     this.filteredCountryItemList = this.countryItemList;
+     this.getAllRegions();
   }
 
-  loadCountryItems() {
-    this.countriesService.getAllCountryListData()
-      .subscribe({
-        next: (data) => {
-          this.countryItemList = data.map(item => ({
-            ...item,
-            population: item.population.toLocaleString(),
-            area: item.area.toLocaleString()
-          }));;
-         /*  this.countryItemList = data; */
-          this.filteredCountryItemList = this.countryItemList; // if there's data, populating the countryItemList array & formatting the integers 
-        },
-        error: (error) => {
-          this.error = error.message; // if error, assigns the message to error variable that will be printed out to users
-        }
-      })
-    
+  // get an array of all of the regions to pass down to filters component so it can be used for the region filter
+  private getAllRegions() {
+    const fullRegionsArray = this.countryItemList
+      .map(countryItem => countryItem.region)
+      .filter(Boolean); // get all of the region values and remove any null/undefiend 
+
+    this.allRegions = [...new Set(fullRegionsArray)]
+      .sort((a, b) => a.localeCompare(b)); // remove all of the duplicate values and sort the array
   }
 
   /* FILTER LOGIC */

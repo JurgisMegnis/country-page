@@ -5,7 +5,7 @@
 </section>
 <section class="bottom">
     <section class="left">
-        <app-filters (filterChange)="filterSortBy($event)"></app-filters>
+        <app-filters (filterChange)="filterSortBy($event)" [multiselectOptions]="this.allRegions"></app-filters>
     </section>
     <section class="right">
         <div class="country-list-container">
@@ -33,7 +33,7 @@
                 @if (error) {
                     <div class="error">
                         <p>{{error}}</p>
-                        <app-button value="Try again" (click)="loadCountryItems()"></app-button>
+                        <app-button value="Try again" (click)="this.countriesService.loadCountryItems()"></app-button>
                     </div>
                 }
             </div>
