@@ -1,7 +1,7 @@
-<form action="">
+<!-- <form action="" > -->
     <label [for]="id">{{label}}</label>
-    @for (selection of selections; track $index) {
-        <input type="checkbox" [name]="selection" [id]="selection">
+    @for (selection of selections; track selection; let i = $index) {
+        <input type="checkbox" [formControl]="multiSelectControls" [name]="selection" [id]="selection" [value]="selection">
         <label [for]="selection">{{selection}}</label>
     }
-</form>
+<!-- </form> -->

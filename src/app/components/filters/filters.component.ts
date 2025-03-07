@@ -1,8 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { DropdownComponent } from '../dropdown/dropdown.component';
 import { MultiSelectComponent } from '../multi-select/multi-select.component';
-import { FormControl, FormGroup } from '@angular/forms';
-
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-filters',
   standalone: true,
@@ -24,7 +23,8 @@ export class FiltersComponent implements OnInit {
   @Output() filterChange = new EventEmitter<string | null>();
 
   filtersInputGroup = new FormGroup({
-    sortby: new FormControl('Population')
+    sortby: new FormControl('Population'),
+    region: new FormControl([])
   })
 
   ngOnInit(): void {
@@ -34,6 +34,15 @@ export class FiltersComponent implements OnInit {
     // subscribe to changes
     this.filtersInputGroup.controls.sortby.valueChanges.subscribe(val => {
       this.filterChange.emit(val);
-    }) 
+    });
+    this.test();
+  }
+
+  test() {
+    console.log(this.filtersInputGroup.get('region')?.value);
+
+    this.filtersInputGroup.controls.region.valueChanges.subscribe(val => {
+      console.log(val);
+    })
   }
 }

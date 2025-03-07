@@ -1,0 +1,8 @@
+@import '../../../styles/styles.scss';
+
+:host {
+    label {
+        color: $grey-100;
+        @include context-semibold;
+    }
+}

@@ -14,12 +14,18 @@ import { FiltersComponent } from "../filters/filters.component";
   styleUrl: "./home.component.scss",
 })
 export class HomeComponent implements OnInit {
+  // arrays with country objects
   countryItemList: CountryListInfo[] = [];
   filteredCountryItemList: CountryListInfo[] = [];
+
+  // error message
   error: string | null = null;
-  countriesService: CountriesService = inject(CountriesService);
+
+  // variables for filtering
   allRegions: string[] = []; // array to be passed to the filter component
-  sortBySelection: string | null = ''; // value from Sort By filter 
+  private sortBySelection: string | null = ''; // value from Sort By filter 
+
+  constructor(public countriesService: CountriesService) {}
 
   ngOnInit(): void {
      this.countriesService.loadCountryItems() 
