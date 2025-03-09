@@ -10,12 +10,12 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
   styleUrl: './filters.component.scss'
 })
 export class FiltersComponent implements OnInit {
-  // dropdown properties
+  // sort by properties (dropdown comp)
   readonly DROPDOWN_LABEL = "Sorty by";
   readonly DROPDOWN_ID = "sort";
   readonly DROPDOWN_OPTIONS= ["Name", "Area", "Population"];
   
-  // multiselect properties
+  // region filter properties (multi-select comp)
   @Input() multiselectOptions!: string[];
   readonly MULTISELECT_LABEL = "Region";
   readonly MULTISELECT_ID ="region";
@@ -35,14 +35,18 @@ export class FiltersComponent implements OnInit {
     this.filtersInputGroup.controls.sortby.valueChanges.subscribe(val => {
       this.filterChange.emit(val);
     });
-    this.test();
+    /* this.test(); */
   }
 
-  test() {
+  test(value: string[]) {
+    console.log(value);
+  }
+
+  /* test() {
     console.log(this.filtersInputGroup.get('region')?.value);
 
     this.filtersInputGroup.controls.region.valueChanges.subscribe(val => {
       console.log(val);
     })
-  }
+  } */
 }
