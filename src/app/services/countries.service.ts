@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, computed } from '@angular/core';
 import { CountryListInfo } from '../interfaces/country-info';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, retry, throwError } from 'rxjs';
@@ -9,9 +9,38 @@ import { Observable, catchError, retry, throwError } from 'rxjs';
 export class CountriesService {
   private readonly URL = 'https://restcountries.com/v3.1/all?sort=population';
 
-  constructor(private http: HttpClient) { }
+  // private writable signals
+  private countryListSignal = signal<CountryListInfo[]>([]);
+  private errorSignal = signal<string>('');
 
-  getAllCountryListData(): Observable<CountryListInfo[]> {
+  // public readonly signals
+  public countries = computed(() => this.countryListSignal());
+  public error = computed(() => this.errorSignal());
+
+  constructor(private http: HttpClient) {}
+
+  loadCountryItems() {
+    this.errorSignal.set('');
+
+    this.getAllCountryListData()
+      .subscribe({
+        // if there's data, populate the countryListSignal & format the integers 
+        next: (data) => {
+          this.countryListSignal.set(data.map(item => ({
+            ...item,
+            population: item.population.toLocaleString(),
+            area: item.area.toLocaleString()
+          })));
+          this.errorSignal.set('');
+        },
+        // if there's an error, assign the message to the errorSignal 
+        error: (error) => {
+          this.errorSignal.set(error.message)
+        }
+      })
+  }
+
+  private getAllCountryListData(): Observable<CountryListInfo[]> {
     return this.http.get<CountryListInfo[]>(this.URL).pipe(
       // retry failed requests 2 times
       retry(2),

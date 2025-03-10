@@ -1,1 +1,4 @@
-<app-dropdown [dropdownControl]="filtersInputGroup.controls.sortby" [label]="DROPDOWN_LABEL" [options]="DROPDOWN_OPTIONS" [id]="DROPDOWN_ID"></app-dropdown>
+<div class="selection-container">
+    <app-dropdown [label]="DROPDOWN_LABEL" [options]="DROPDOWN_OPTIONS" [id]="DROPDOWN_ID" (dropdownSelectedValue)="getSortByValue($event)"></app-dropdown>
+    <app-multi-select [options]="multiselectOptions" [id]="MULTISELECT_ID" [label]="MULTISELECT_LABEL" (selectionChange)="getRegionValue($event)"></app-multi-select>
+</div>
