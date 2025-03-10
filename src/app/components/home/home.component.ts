@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
   // variables for filtering
   allRegions: string[] = []; // array to be passed to the filter component
   private sortBySelection: string | null = ''; // value from Sort By filter 
+  private sortByRegion: string[] = []; // value from Region filter
 
   constructor(public countriesService: CountriesService) {}
 
@@ -48,9 +49,15 @@ export class HomeComponent implements OnInit {
   /* FILTER LOGIC */
 
   // get the value of the Sort By filter and assign it to this.sortBySelection variable & call sort() function
-  filterSortBy(value: string | null) {
+  filterSortBy(value: string) {
     this.sortBySelection = value;
     this.sort();
+    console.log(value);
+  }
+
+  filterRegion(value: string[]) {
+    this.sortByRegion = value;
+    console.log(value);
   }
 
   sort() {

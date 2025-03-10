@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -8,10 +8,31 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   templateUrl: './dropdown.component.html',
   styleUrl: './dropdown.component.scss'
 })
-export class DropdownComponent {
+export class DropdownComponent implements OnInit {
   @Input() label!: string;
   @Input() options!: string[];
   @Input() id!: string;
 
-  @Input() dropdownControl: FormControl<string | null> = new FormControl();
+  @Output() dropdownSelectedValue = new EventEmitter<string>();
+
+  dropdownControl = new FormControl<string>('Population');
+
+  ngOnInit(): void {
+    this.getValues();
+  }
+
+  private getValues() {
+    // emit initial value
+    const initialValue = this.dropdownControl.value;
+    if (initialValue) {
+      this.dropdownSelectedValue.emit(initialValue);
+    }
+
+    // subscribe to change
+    this.dropdownControl.valueChanges.subscribe(val => {
+      if (val) {
+        this.dropdownSelectedValue.emit(val);
+      }
+    })
+  }
 }

@@ -9,7 +9,7 @@ import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular
   styleUrl: './multi-select.component.scss'
 })
 export class MultiSelectComponent implements OnInit {
-  @Input() selections!: string[];
+  @Input() options!: string[];
   @Input() label!: string;
   @Input() id!: string;
 
@@ -31,16 +31,16 @@ export class MultiSelectComponent implements OnInit {
     regionArray.clear(); 
 
     // add FormControl for each region option
-    this.selections.forEach(item => {
+    this.options.forEach(item => {
       regionArray.push(new FormControl(false));
     })
   }
 
   private getValues() {
     this.multiSelectForm.get('items')?.valueChanges.subscribe(value => {
-      
+
       // create an object from options and it's boolean value
-      const selectedItemObj = this.selections.reduce<{[key: string]: boolean}>((obj, key, index) => {
+      const selectedItemObj = this.options.reduce<{[key: string]: boolean}>((obj, key, index) => {
         obj[key] = value[index];
         return obj
       }, {});
@@ -52,8 +52,4 @@ export class MultiSelectComponent implements OnInit {
       this.selectionChange.emit(selectedItems);
     })
   }
-
-
-
-  /* @Input() multiSelectControls: FormControl<boolean[] | null> = new FormControl(); */
 }
