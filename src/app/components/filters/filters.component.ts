@@ -26,8 +26,11 @@ export class FiltersComponent {
   readonly CHECKBOX_ONE_LABEL = "Member of the United Nations";
   readonly CHECKBOX_TWO_LABEL = "Independent";
   
+  // output all of the received values to home componenet
   @Output() sortByValue = new EventEmitter<string>();
   @Output() region = new EventEmitter<string[]>();
+  @Output() statusUn = new EventEmitter<boolean>();
+  @Output() statusIndependent = new EventEmitter<boolean>();
 
   getSortByValue(value: string) {
     this.sortByValue.emit(value)
@@ -35,6 +38,14 @@ export class FiltersComponent {
 
   getRegionValue(value: string[]) {
     this.region.emit(value);
+  }
+
+  getStatusUnValue (value: boolean) {
+    this.statusUn.emit(value);
+  }
+
+  getStatusIndependentValue(value: boolean) {
+    this.statusIndependent.emit(value);
   }
 
 }

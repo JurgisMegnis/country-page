@@ -10,8 +10,8 @@
     <div class="status-container">
         <p class="filter-label">{{CHECKBOX_LABEL}}</p>
         <div class="status-options">
-            <app-checkbox [option]="CHECKBOX_ONE_LABEL"></app-checkbox>
-            <app-checkbox [option]="CHECKBOX_TWO_LABEL"></app-checkbox>
+            <app-checkbox (checkboxValue)="getStatusUnValue($event)" [option]="CHECKBOX_ONE_LABEL"></app-checkbox>
+            <app-checkbox (checkboxValue)="getStatusIndependentValue($event)" [option]="CHECKBOX_TWO_LABEL"></app-checkbox>
         </div>
     </div>
 </div>
