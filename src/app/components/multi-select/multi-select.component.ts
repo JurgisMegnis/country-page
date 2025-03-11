@@ -10,7 +10,6 @@ import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular
 })
 export class MultiSelectComponent implements OnInit {
   @Input() options!: string[];
-  @Input() label!: string;
   @Input() id!: string;
 
   @Output() selectionChange = new EventEmitter<string[]>();

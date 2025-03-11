@@ -1,4 +1,17 @@
 <div class="selection-container">
-    <app-dropdown [label]="DROPDOWN_LABEL" [options]="DROPDOWN_OPTIONS" [id]="DROPDOWN_ID" (dropdownSelectedValue)="getSortByValue($event)"></app-dropdown>
-    <app-multi-select [options]="multiselectOptions" [id]="MULTISELECT_ID" [label]="MULTISELECT_LABEL" (selectionChange)="getRegionValue($event)"></app-multi-select>
+    <div class="sorty-by-container">
+        <p class="filter-label">{{DROPDOWN_LABEL}}</p>
+        <app-dropdown [options]="DROPDOWN_OPTIONS" [id]="DROPDOWN_ID" (dropdownSelectedValue)="getSortByValue($event)"></app-dropdown>
+    </div>
+    <div class="region-container">
+        <p class="filter-label">{{MULTISELECT_LABEL}}</p>
+        <app-multi-select [options]="multiselectOptions" [id]="MULTISELECT_ID" (selectionChange)="getRegionValue($event)"></app-multi-select>
+    </div>
+    <div class="status-container">
+        <p class="filter-label">{{CHECKBOX_LABEL}}</p>
+        <div class="status-options">
+            <app-checkbox [option]="CHECKBOX_ONE_LABEL"></app-checkbox>
+            <app-checkbox [option]="CHECKBOX_TWO_LABEL"></app-checkbox>
+        </div>
+    </div>
 </div>

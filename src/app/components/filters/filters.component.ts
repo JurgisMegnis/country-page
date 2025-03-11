@@ -1,11 +1,12 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { DropdownComponent } from '../dropdown/dropdown.component';
 import { MultiSelectComponent } from '../multi-select/multi-select.component';
+import { CheckboxComponent } from '../checkbox/checkbox.component';
 
 @Component({
   selector: 'app-filters',
   standalone: true,
-  imports: [DropdownComponent, MultiSelectComponent],
+  imports: [DropdownComponent, MultiSelectComponent, CheckboxComponent],
   templateUrl: './filters.component.html',
   styleUrl: './filters.component.scss'
 })
@@ -19,6 +20,11 @@ export class FiltersComponent {
   @Input() multiselectOptions!: string[];
   readonly MULTISELECT_LABEL = "Region";
   readonly MULTISELECT_ID ="region";
+
+  // status filter properties (checkbox comp)
+  readonly CHECKBOX_LABEL = "Status";
+  readonly CHECKBOX_ONE_LABEL = "Member of the United Nations";
+  readonly CHECKBOX_TWO_LABEL = "Independent";
   
   @Output() sortByValue = new EventEmitter<string>();
   @Output() region = new EventEmitter<string[]>();

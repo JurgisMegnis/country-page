@@ -1,14 +1,6 @@
 @import '../../../styles/styles.scss';
 
 :host {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-
-    label {
-        color: $grey-100;
-        @include context-semibold;
-    }
 
     select {
         @include label-semibold;
