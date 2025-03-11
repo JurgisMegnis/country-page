@@ -3,12 +3,6 @@
 :host {
     label {
         position: relative;
-        &.title {
-            color: $grey-100;
-            @include context-semibold;
-            margin-bottom: 12px;
-            display: block;
-        }
         
         &.selection-label {
             color: $grey-100;

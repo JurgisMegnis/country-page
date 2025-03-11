@@ -24,7 +24,9 @@ export class HomeComponent implements OnInit {
   // variables for filtering
   allRegions: string[] = []; // array to be passed to the filter component
   private sortBySelection: string | null = ''; // value from Sort By filter 
-  private sortByRegion: string[] = []; // value from Region filter
+  private regionSelection: string[] = []; // value from Region filter
+  private statusUnSelection: boolean = false; // value from Status filter / Member of UN
+  private statusIndependentSelection: boolean = false; // value from Status filter / Independent
 
   constructor(public countriesService: CountriesService) {}
 
@@ -55,8 +57,21 @@ export class HomeComponent implements OnInit {
     console.log(value);
   }
 
+  // get the value of the Region filter and assign it to a variable
   filterRegion(value: string[]) {
-    this.sortByRegion = value;
+    this.regionSelection = value;
+    console.log(value);
+  }
+
+  // get the value of the Status filter/Member of UN and assign to a variable
+  filterUn(value: boolean) {
+    this.statusUnSelection = value;
+    console.log(value);
+  }
+
+  // get the value of the Status filter/Independent and assign to a variable
+  filterIndependent(value: boolean) {
+    this.statusIndependentSelection = value;
     console.log(value);
   }
 

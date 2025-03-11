@@ -1,5 +1,4 @@
 <form action="" [formGroup]="multiSelectForm">
-    <label class="title" [for]="id">{{label}}</label>
     <div formArrayName="items">
         @for (option of options; track option; let i = $index) {
             <input type="checkbox" [formControlName]="i" [name]="option" [id]="option" [value]="option">

@@ -9,7 +9,6 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './dropdown.component.scss'
 })
 export class DropdownComponent implements OnInit {
-  @Input() label!: string;
   @Input() options!: string[];
   @Input() id!: string;
 

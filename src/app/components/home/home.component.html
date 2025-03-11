@@ -5,7 +5,13 @@
 </section>
 <section class="bottom">
     <section class="left">
-        <app-filters (sortByValue)="filterSortBy($event)" (region)="filterRegion($event)" [multiselectOptions]="this.allRegions"></app-filters>
+        <app-filters 
+            (sortByValue)="filterSortBy($event)" 
+            (region)="filterRegion($event)" 
+            (statusUn)="filterUn($event)" 
+            (statusIndependent)="filterIndependent($event)" 
+            [multiselectOptions]="this.allRegions">
+        </app-filters>
     </section>
     <section class="right">
         <div class="country-list-container">
