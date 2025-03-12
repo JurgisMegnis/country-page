@@ -7,7 +7,11 @@ import { CountryListInfo } from '../../interfaces/country-info';
 @Component({
   selector: 'app-filters',
   standalone: true,
-  imports: [DropdownComponent, MultiSelectComponent, CheckboxComponent],
+  imports: [
+    DropdownComponent, 
+    MultiSelectComponent, 
+    CheckboxComponent,
+  ],
   templateUrl: './filters.component.html',
   styleUrl: './filters.component.scss'
 })

@@ -9,7 +9,8 @@ export interface CountryBaseInfo {
     },
     cca3: string,
     population: string,
-    area: string,  
+    area: string,
+    subregion: string,  
 }
 
 /* list view interface */
@@ -26,7 +27,6 @@ export interface CountryDetailInfo extends CountryBaseInfo {
         official: string
     }
     capital: string,
-    subregion: string,
     languages: {
         [key: string]: string
     },

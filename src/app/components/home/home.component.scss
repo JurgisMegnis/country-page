@@ -1,5 +1,19 @@
 @import '../../../styles/styles.scss';
 
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 36px;
+
+    .list-status {
+        h1 {
+            color: $grey-100;
+            @include h1;
+        }
+    }
+}
+
 .bottom {
     display: grid;
     grid-template-columns: 0.3fr 1fr;

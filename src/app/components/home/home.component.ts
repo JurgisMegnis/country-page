@@ -5,6 +5,7 @@ import { CountryListInfo } from "../../interfaces/country-info";
 import { CountriesService } from "../../services/countries.service";
 import { ButtonComponent } from "../button/button.component";
 import { FiltersComponent } from "../filters/filters.component";
+import { SearchComponent } from "../search/search.component";
 
 @Component({
   selector: "app-home",
@@ -14,6 +15,7 @@ import { FiltersComponent } from "../filters/filters.component";
     ButtonComponent,
     CommonModule,
     FiltersComponent,
+    SearchComponent,
   ],
   templateUrl: "./home.component.html",
   styleUrl: "./home.component.scss",
@@ -26,9 +28,10 @@ export class HomeComponent implements OnInit {
   // error message
   error: string | null = null;
 
-  // variables for filtering
+  // variables for filtering & search field
   allRegions: string[] = []; // array to be passed to the filter component
   private sortBySelection: string | null = ""; // value from Sort By filter
+  readonly SEARCH_LABEL = "Search by Name, Region, Subregion"; 
 
   constructor(public countriesService: CountriesService) {}
 
