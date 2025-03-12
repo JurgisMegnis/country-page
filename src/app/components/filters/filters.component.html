@@ -5,13 +5,13 @@
     </div>
     <div class="region-container">
         <p class="filter-label">{{MULTISELECT_LABEL}}</p>
-        <app-multi-select [options]="multiselectOptions" [id]="MULTISELECT_ID" (selectionChange)="getRegionValue($event)"></app-multi-select>
+        <app-multi-select [options]="multiselectOptions" [id]="MULTISELECT_ID" (selectionChange)="filterByRegion($event)"></app-multi-select>
     </div>
     <div class="status-container">
         <p class="filter-label">{{CHECKBOX_LABEL}}</p>
         <div class="status-options">
-            <app-checkbox (checkboxValue)="getStatusUnValue($event)" [option]="CHECKBOX_ONE_LABEL"></app-checkbox>
-            <app-checkbox (checkboxValue)="getStatusIndependentValue($event)" [option]="CHECKBOX_TWO_LABEL"></app-checkbox>
+            <app-checkbox (checkboxValue)="filterByStatusUn($event)" [option]="CHECKBOX_ONE_LABEL"></app-checkbox>
+            <app-checkbox (checkboxValue)="filterByStatusIndependent($event)" [option]="CHECKBOX_TWO_LABEL"></app-checkbox>
         </div>
     </div>
 </div>

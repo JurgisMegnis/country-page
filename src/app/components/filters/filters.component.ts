@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { DropdownComponent } from '../dropdown/dropdown.component';
 import { MultiSelectComponent } from '../multi-select/multi-select.component';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
+import { CountryListInfo } from '../../interfaces/country-info';
 
 @Component({
   selector: 'app-filters',
@@ -26,26 +27,57 @@ export class FiltersComponent {
   readonly CHECKBOX_ONE_LABEL = "Member of the United Nations";
   readonly CHECKBOX_TWO_LABEL = "Independent";
   
-  // output all of the received values to home componenet
+  // output selected sorting and filtering values
   @Output() sortByValue = new EventEmitter<string>();
-  @Output() region = new EventEmitter<string[]>();
-  @Output() statusUn = new EventEmitter<boolean>();
-  @Output() statusIndependent = new EventEmitter<boolean>();
+  @Output() filterProp = new EventEmitter<Array<(item: CountryListInfo) => boolean>>()
 
+  // emit the selected sort by value
   getSortByValue(value: string) {
     this.sortByValue.emit(value)
   }
 
-  getRegionValue(value: string[]) {
-    this.region.emit(value);
+  // filter variables
+  private regionFilter: ((property: any) => boolean) | null = null;
+  private statusUnFilter: ((property: any) => boolean) | null = null;
+  private statusIndependentFilter: ((property: any) => boolean) | null = null;
+  filters: Array<(item: CountryListInfo) => boolean> = [];
+
+  // checks the selected region and add it to the filters array
+  filterByRegion(value: string[]) {
+    if (value.length === 0) {
+      this.regionFilter = null;
+    } else {
+      this.regionFilter = (item) => value.includes(item.region); // filter function checking if the items region is included in the array of selected regions
+    }
+    this.updateFilters();
   }
 
-  getStatusUnValue (value: boolean) {
-    this.statusUn.emit(value);
+  // checks whether the UN filter is enabled and add the result to the filters array
+  filterByStatusUn(value: boolean | null) {
+    if (value) {
+      this.statusUnFilter = (item) => item.unMember === true;
+    } else {
+      this.statusUnFilter = null;
+    }
+    this.updateFilters();
   }
 
-  getStatusIndependentValue(value: boolean) {
-    this.statusIndependent.emit(value);
+  // checks whether the Independent filter is enabled and add the result to the filters array
+  filterByStatusIndependent(value: boolean | null) {
+    if (value) {
+      this.statusIndependentFilter = (item) => item.independent === true;
+    } else {
+      this.statusIndependentFilter = null;
+    }
+    this.updateFilters();
   }
 
+  // update the filters variable and emits the value to the home component
+  updateFilters() {
+    this.filters = [];
+    if (this.regionFilter) this.filters.push(this.regionFilter);
+    if (this.statusUnFilter) this.filters.push(this.statusUnFilter);
+    if (this.statusIndependentFilter) this.filters.push(this.statusIndependentFilter);
+    this.filterProp.emit(this.filters);
+  }
 }
