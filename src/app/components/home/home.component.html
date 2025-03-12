@@ -7,9 +7,7 @@
     <section class="left">
         <app-filters 
             (sortByValue)="filterSortBy($event)" 
-            (region)="filterRegion($event)" 
-            (statusUn)="filterUn($event)" 
-            (statusIndependent)="filterIndependent($event)" 
+            (filterProp)="filter($event)"
             [multiselectOptions]="this.allRegions">
         </app-filters>
     </section>

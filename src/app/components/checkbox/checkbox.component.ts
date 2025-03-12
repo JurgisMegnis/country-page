@@ -10,7 +10,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 })
 export class CheckboxComponent implements OnInit {
   @Input() option!: string;
-  @Output() checkboxValue = new EventEmitter<boolean>();
+  @Output() checkboxValue = new EventEmitter<boolean | null>();
 
   checkboxControl = new FormControl<boolean>(false);
 
@@ -20,9 +20,7 @@ export class CheckboxComponent implements OnInit {
 
   private getValue() {
     this.checkboxControl.valueChanges.subscribe(val => {
-      if(val) {
         this.checkboxValue.emit(val);
-      }
     })
   }
 }
