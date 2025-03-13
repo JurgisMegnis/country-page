@@ -33,6 +33,9 @@ export class HomeComponent implements OnInit {
   private sortBySelection: string | null = ""; // value from Sort By filter
   readonly SEARCH_LABEL = "Search by Name, Region, Subregion"; 
 
+  // variable for the searchTerm that will be passed to filter component
+  searchTerm: string | null = '';
+
   constructor(public countriesService: CountriesService) {}
 
   ngOnInit(): void {
@@ -87,9 +90,16 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  // gets the search input from the component and assigns it to the searchTerm variable
+  search(value: string | null) {
+    this.searchTerm = value;
+  }
+
   // update the this.filteredCountryItemList variable based on the selected filters
   filter(filterProp: Array<(item: CountryListInfo) => boolean>) {
     this.filteredCountryItemList = this.countryItemList.filter(property =>
       filterProp.every(filter => filter(property)));  
   }
+
+  
 }

@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -10,7 +10,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 })
 export class SearchComponent implements OnInit {
   @Input() label!: string;
-  @Output() searchInput!: string;
+  @Output() searchInput = new EventEmitter<string | null>();
 
   inputControl = new FormControl<string>('');
 
@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit {
 
   private getValue() {
     this.inputControl.valueChanges.subscribe(val => {
-      console.log(val);
+      this.searchInput.emit(val);
     })
   }
 

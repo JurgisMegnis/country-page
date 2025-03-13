@@ -3,7 +3,7 @@
         <h1>Found {{this.filteredCountryItemList.length}} countries</h1>
     </div>
     <div class="search-container">
-        <app-search [label]="SEARCH_LABEL"></app-search>
+        <app-search (searchInput)="search($event)" [label]="SEARCH_LABEL"></app-search>
     </div>
 </section>
 <section class="bottom">
@@ -11,7 +11,8 @@
         <app-filters 
             (sortByValue)="filterSortBy($event)" 
             (filterProp)="filter($event)"
-            [multiselectOptions]="this.allRegions">
+            [multiselectOptions]="this.allRegions"
+            [searchInput]="this.searchTerm">
         </app-filters>
     </section>
     <section class="right">
