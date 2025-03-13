@@ -32,5 +32,10 @@
                 background-color: $grey-300;
             }
         }
+
+        &:focus + label {
+            outline: 1.5px solid $blue;
+            outline-offset: 3px;
+        }
     }
 }

@@ -1,0 +1,29 @@
+@import '../../../styles/styles.scss';
+
+input {
+    border: none;
+    background-color: $grey-300;
+    width: 100%;
+    padding: .75rem .5rem .75rem 2.5rem;
+    border-radius: 12px;
+    color: $grey-100;
+    @include label-medium;
+
+    background-image: url('../../../../public/Search.svg');
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: .5rem;
+
+    
+    &::placeholder {
+        color: $grey-100;
+        @include label-medium;
+    }
+
+    &:focus {
+        outline: 1.5px solid $blue;
+        outline-offset: 3px;
+        background-image: url('../../../../public/Search-active.svg');
+    }
+
+}

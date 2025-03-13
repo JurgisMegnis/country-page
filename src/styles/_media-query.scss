@@ -1,0 +1,7 @@
+@mixin respond-medium {
+    @media (max-width: 1024px) { @content }
+};
+
+@mixin respond-small {
+    @media (max-width: 740px) { @content }
+};

@@ -7,7 +7,11 @@ import { CountryListInfo } from '../../interfaces/country-info';
 @Component({
   selector: 'app-filters',
   standalone: true,
-  imports: [DropdownComponent, MultiSelectComponent, CheckboxComponent],
+  imports: [
+    DropdownComponent, 
+    MultiSelectComponent, 
+    CheckboxComponent,
+  ],
   templateUrl: './filters.component.html',
   styleUrl: './filters.component.scss'
 })
@@ -40,6 +44,7 @@ export class FiltersComponent {
   private regionFilter: ((property: any) => boolean) | null = null;
   private statusUnFilter: ((property: any) => boolean) | null = null;
   private statusIndependentFilter: ((property: any) => boolean) | null = null;
+  private searchTerm: ((property: any) => boolean) | null = null;
   filters: Array<(item: CountryListInfo) => boolean> = [];
 
   // checks the selected region and add it to the filters array
@@ -72,12 +77,31 @@ export class FiltersComponent {
     this.updateFilters();
   }
 
+    // getting search input and checking if it matches anything from name, region or subregion
+    @Input() set searchInput(value: string | null) {
+        if (!value) {
+          this.searchTerm = null;
+        } else {
+          const searchValue = value.toLowerCase();
+          this.searchTerm = (item) => 
+            item.name.common.toLowerCase().includes(searchValue) ||
+            (item.region.toLowerCase() || '').includes(searchValue) ||
+            (item.subregion?.toLowerCase() || '').includes(searchValue);
+        }
+      
+      // setTimeut moves the updateFilters() call to the next event loop, avoiding NG0100 error
+      setTimeout(() => {
+        this.updateFilters();
+      }, 0)
+    }
+
   // update the filters variable and emits the value to the home component
   updateFilters() {
     this.filters = [];
     if (this.regionFilter) this.filters.push(this.regionFilter);
     if (this.statusUnFilter) this.filters.push(this.statusUnFilter);
     if (this.statusIndependentFilter) this.filters.push(this.statusIndependentFilter);
+    if (this.searchTerm) this.filters.push(this.searchTerm);
     this.filterProp.emit(this.filters);
   }
 }

@@ -1,5 +1,23 @@
 @import '../../../styles/styles.scss';
 
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 36px;
+
+    .list-status {
+        h1 {
+            color: $grey-100;
+            @include h1;
+        }
+    }
+
+    .search-container {
+        width: 341px;
+    }
+}
+
 .bottom {
     display: grid;
     grid-template-columns: 0.3fr 1fr;
@@ -68,4 +86,37 @@
             }
         }
     }
+}
+
+@include respond-medium {
+    .bottom {
+        grid-template-columns: 0.5fr 1fr;
+        .right {
+            .country-list-container {
+                .country-list-header {
+                    grid-template-columns: .4fr repeat(2, 1fr) .5fr;
+                    .region {
+                        display: none;
+                    }
+                }
+            }
+        }
     }
+    
+}
+
+@include respond-small {
+    .top {
+        flex-direction: column;
+        align-items: normal;
+        gap: 24px;
+
+        .search-container {
+            width: 100%;
+        }
+    }
+
+    .bottom {
+        grid-template-columns: 1fr;
+    }
+}
