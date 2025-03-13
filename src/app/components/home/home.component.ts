@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { CountryItemComponent } from "../country-item/country-item.component";
 import { CountryListInfo } from "../../interfaces/country-info";
@@ -43,18 +43,7 @@ export class HomeComponent implements OnInit {
     this.countryItemList = this.countriesService.countries();
     this.error = this.countriesService.error();
     this.filteredCountryItemList = this.countryItemList;
-    this.getAllRegions();
-  }
-
-  // get an array of all of the regions to pass down to filters component so it can be used for the region filter
-  private getAllRegions() {
-    const fullRegionsArray = this.countryItemList
-      .map((countryItem) => countryItem.region)
-      .filter(Boolean); // get all of the region values and remove any null/undefiend
-
-    this.allRegions = [...new Set(fullRegionsArray)].sort((a, b) =>
-      a.localeCompare(b),
-    ); // remove all of the duplicate values and sort the array
+    this.allRegions = this.countriesService.getAllRegions();
   }
 
   /* FILTER LOGIC */
