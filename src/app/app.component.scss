@@ -20,3 +20,9 @@ main {
     margin-top: 96px;
     padding: 24px 32px;
 }
+
+@include respond-small {
+  main {
+    padding: 24px 12px;
+  }
+}

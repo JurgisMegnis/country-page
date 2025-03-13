@@ -3,5 +3,5 @@
 };
 
 @mixin respond-small {
-    @media (max-width: 640px) { @content }
+    @media (max-width: 740px) { @content }
 };

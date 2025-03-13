@@ -1,8 +1,6 @@
 @import '../../../styles/styles.scss';
 
 :host {
-    /* display: flex;
-    gap: 16px; */
     display: grid;
     grid-template-columns: 0.3fr repeat(4, 1fr);
     align-items: center;

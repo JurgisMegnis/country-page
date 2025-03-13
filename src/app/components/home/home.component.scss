@@ -12,6 +12,10 @@
             @include h1;
         }
     }
+
+    .search-container {
+        width: 341px;
+    }
 }
 
 .bottom {
@@ -86,7 +90,7 @@
 
 @include respond-medium {
     .bottom {
-    grid-template-columns: 0.5fr 1fr;
+        grid-template-columns: 0.5fr 1fr;
         .right {
             .country-list-container {
                 .country-list-header {
@@ -99,4 +103,20 @@
         }
     }
     
+}
+
+@include respond-small {
+    .top {
+        flex-direction: column;
+        align-items: normal;
+        gap: 24px;
+
+        .search-container {
+            width: 100%;
+        }
+    }
+
+    .bottom {
+        grid-template-columns: 1fr;
+    }
 }
