@@ -82,4 +82,21 @@
             }
         }
     }
+}
+
+@include respond-medium {
+    .bottom {
+    grid-template-columns: 0.5fr 1fr;
+        .right {
+            .country-list-container {
+                .country-list-header {
+                    grid-template-columns: .4fr repeat(2, 1fr) .5fr;
+                    .region {
+                        display: none;
+                    }
+                }
+            }
+        }
     }
+    
+}

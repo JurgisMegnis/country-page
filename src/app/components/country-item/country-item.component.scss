@@ -26,4 +26,13 @@
         }
     }
     
-} 
+}
+
+@include respond-medium {
+    :host {
+        grid-template-columns: .4fr repeat(2, 1fr) .5fr;
+        .region-container {
+            display: none;
+        }
+    }
+}
