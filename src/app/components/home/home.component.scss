@@ -1,86 +1,97 @@
 @import '../../../styles/styles.scss';
 
-.top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 36px;
+.main {
+    width: 95%;
+    background-color: $grey-400;
+    border: 1px solid $grey-300;
+    filter: drop-shadow(0px 4px 8px #00000025);
+    border-radius: 12px;
+    margin: 0 auto;
+    margin-top: 96px;
+    padding: 24px 32px;
+    
+    .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 36px;
 
-    .list-status {
-        h1 {
-            color: $grey-100;
-            @include h1;
+        .list-status {
+            h1 {
+                color: $grey-100;
+                @include body-semibold;
+            }
+        }
+
+        .search-container {
+            width: 341px;
         }
     }
 
-    .search-container {
-        width: 341px;
-    }
-}
+    .bottom {
+        display: grid;
+        grid-template-columns: 0.3fr 1fr;
+        gap: 32px;
 
-.bottom {
-    display: grid;
-    grid-template-columns: 0.3fr 1fr;
-    gap: 32px;
-
-    .right {
-        .country-list-container {
-            .country-list-header {
-                display: grid;
-                grid-template-columns: 0.3fr repeat(4, 1fr);
-                align-items: center;
-                color: $grey-100;
-                @include context-medium;
-                padding-bottom: 16px;
-                border-bottom: 2px solid $grey-300;
-            }
-
-            .country-list {
-                margin-top: 16px;
-
-                .country-item-placeholder {
-                    height: 50px; /* match your country-item height */
-                    background: $grey-300;
-                    margin-bottom: 12px;
-                    border-radius: 12px;
-                    position: relative;
-                    overflow: hidden;
-                }
-
-                .country-item-loader {
-                    height: 50px; /* match your country-item height */
-                    background: $grey-300;
-                    margin-bottom: 12px;
-                    border-radius: 12px;
-                    position: relative;
-
-                    .shimmer {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 50%;
-                        height: 100%;
-
-                        background: linear-gradient(100deg,
-                            rgba(40, 43, 48, 0) 20%,
-                            rgba(108, 114, 127, 0.5) 50%,
-                            rgba(40, 43, 48, 0) 80%);
-
-                        animation: shimmer 3s infinite linear;
-                    }
-                }
-
-                .error {
-                    height: 30vh;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 16px;
-                    justify-content: center;
+        .right {
+            .country-list-container {
+                .country-list-header {
+                    display: grid;
+                    grid-template-columns: 0.3fr repeat(4, 1fr);
                     align-items: center;
+                    color: $grey-100;
+                    @include context-medium;
+                    padding-bottom: 16px;
+                    border-bottom: 2px solid $grey-300;
+                }
 
-                    p {
-                        color: $grey-100;
-                        @include body-semibold;
+                .country-list {
+                    margin-top: 16px;
+
+                    .country-item-placeholder {
+                        height: 50px; /* match your country-item height */
+                        background: $grey-300;
+                        margin-bottom: 12px;
+                        border-radius: 12px;
+                        position: relative;
+                        overflow: hidden;
+                    }
+
+                    .country-item-loader {
+                        height: 50px; /* match your country-item height */
+                        background: $grey-300;
+                        margin-bottom: 12px;
+                        border-radius: 12px;
+                        position: relative;
+
+                        .shimmer {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 50%;
+                            height: 100%;
+
+                            background: linear-gradient(100deg,
+                                rgba(40, 43, 48, 0) 20%,
+                                rgba(108, 114, 127, 0.5) 50%,
+                                rgba(40, 43, 48, 0) 80%);
+
+                            animation: shimmer 3s infinite linear;
+                        }
+                    }
+
+                    .error {
+                        height: 30vh;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 16px;
+                        justify-content: center;
+                        align-items: center;
+
+                        p {
+                            color: $grey-100;
+                            @include body-semibold;
+                        }
                     }
                 }
             }
@@ -89,34 +100,39 @@
 }
 
 @include respond-medium {
-    .bottom {
-        grid-template-columns: 0.5fr 1fr;
-        .right {
-            .country-list-container {
-                .country-list-header {
-                    grid-template-columns: .4fr repeat(2, 1fr) .5fr;
-                    .region {
-                        display: none;
+    .main {
+        .bottom {
+            grid-template-columns: 0.5fr 1fr;
+            .right {
+                .country-list-container {
+                    .country-list-header {
+                        grid-template-columns: .4fr repeat(2, 1fr) .5fr;
+                        .region {
+                            display: none;
+                        }
                     }
                 }
             }
         }
     }
-    
 }
 
 @include respond-small {
-    .top {
-        flex-direction: column;
-        align-items: normal;
-        gap: 24px;
+    .main {
+        padding: 24px 12px;
+    
+        .top {
+            flex-direction: column;
+            align-items: normal;
+            gap: 24px;
 
-        .search-container {
-            width: 100%;
+            .search-container {
+                width: 100%;
+            }
         }
-    }
 
-    .bottom {
-        grid-template-columns: 1fr;
+        .bottom {
+            grid-template-columns: 1fr;
+        }
     }
 }

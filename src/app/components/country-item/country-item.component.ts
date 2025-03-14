@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { CountryListInfo } from '../../interfaces/country-info';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-country-item',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './country-item.component.html',
   styleUrl: './country-item.component.scss'
 })

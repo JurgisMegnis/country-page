@@ -1,13 +1,14 @@
-import { Injectable, signal, computed } from '@angular/core';
-import { CountryListInfo } from '../interfaces/country-info';
+import { Injectable, signal, computed, } from '@angular/core';
+import { CountryDetailInfo, CountryListInfo } from '../interfaces/country-info';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, catchError, retry, throwError } from 'rxjs';
+import { Observable, Subject, catchError, retry, throwError, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CountriesService {
   private readonly URL = 'https://restcountries.com/v3.1/all?sort=population';
+  private readonly DETAIL_URL = 'https://restcountries.com/v3.1/alpha/';
 
   // private writable signals
   private countryListSignal = signal<CountryListInfo[]>([]);
@@ -31,6 +32,7 @@ export class CountriesService {
             population: item.population.toLocaleString(),
             area: item.area.toLocaleString()
           })));
+          
           this.errorSignal.set('');
         },
         // if there's an error, assign the message to the errorSignal 
@@ -38,6 +40,26 @@ export class CountriesService {
           this.errorSignal.set(error.message)
         }
       })
+  }
+
+  // get an array of all regions to be passed for the multi-select component to filter
+  getAllRegions(): string[] {
+    const fullRegionsArray = this.countries()
+      .map((countryItem) => countryItem.region)
+      .filter(Boolean); // get all of the region values and remove any null/undefiend
+
+    return [...new Set(fullRegionsArray)].sort((a, b) =>
+      a.localeCompare(b),
+    ); // remove all of the duplicate values and sort the array
+  }
+
+  // get a detailed info about the country from their id (cca3 code)
+  getCountryById(id: string): Observable<CountryDetailInfo> {
+    return this.http.get<CountryDetailInfo[]>(this.DETAIL_URL + id).pipe(
+      map(response => response[0]), // transform the array in a single object
+      retry(2),
+      catchError(this.handleError)
+    );
   }
 
   private getAllCountryListData(): Observable<CountryListInfo[]> {
@@ -66,5 +88,4 @@ export class CountriesService {
     console.error('Countries API error:', errorMessage);
     return throwError(() => new Error(errorMessage));
   }
-
 }
