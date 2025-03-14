@@ -1,6 +1,50 @@
 <main class="main">
 @if (countryDetails$ | async; as countryDetails) {
-    <p>{{countryDetails.cca3}}</p>
-    
+    <header>
+        <img [src]="countryDetails.flags.svg" [alt]="countryDetails.flags.alt">
+        <h1>{{countryDetails.name.common}}</h1>
+        <h2>{{countryDetails.name.official}}</h2>
+    </header>
+    <section class="main-facts">
+        <div class="population">
+            <p class="label">Population</p>
+            <p class="info">{{countryDetails.population.toLocaleString()}}</p>
+        </div>
+        <div class="area">
+            <p class="label">Area(km²)</p>
+            <p class="info">{{countryDetails.area.toLocaleString()}}</p>
+        </div>
+    </section>
+    <section class="exta-facts">
+        <div class="capital extra-facts-item">
+            <p class="label">Capital</p>
+            <p class="info">{{countryDetails.capital}}</p>
+        </div>
+        <div class="subregion extra-facts-item">
+            <p class="label">Subregion</p>
+            <p class="info">{{countryDetails.subregion}}</p>
+        </div>
+        <div class="lang extra-facts-item">
+            <p class="label">Language</p>
+            <p class="info">{{getLanguages(countryDetails.languages)}}</p>
+        </div>
+        <div class="currencies extra-facts-item">
+            <p class="label">Currencies</p>
+            <p class="info">{{getCurrencyNames(countryDetails.currencies)}}</p>
+        </div>
+        <div class="continents extra-facts-item">
+            <p class="label">Continets</p>
+            <p class="info">{{countryDetails.continents}}</p>
+        </div>
+        <div class="neighbours extra-facts-item">
+            <p class="label">Neighbouring Countries</p>
+            @if (borderCountryDetails$ | async; as countries) {
+                @for (country of countries; track country) {
+                    <img [src]="country.flags.svg" [alt]="country.flags.alt">
+                    <p class="info">{{country.name.common}}</p>
+                }
+            }
+        </div>
+    </section>
 } 
 </main>

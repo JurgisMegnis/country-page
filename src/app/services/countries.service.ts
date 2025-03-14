@@ -32,6 +32,7 @@ export class CountriesService {
             population: item.population.toLocaleString(),
             area: item.area.toLocaleString()
           })));
+          
           this.errorSignal.set('');
         },
         // if there's an error, assign the message to the errorSignal 

@@ -19,7 +19,7 @@
         .list-status {
             h1 {
                 color: $grey-100;
-                @include h1;
+                @include body-semibold;
             }
         }
 
