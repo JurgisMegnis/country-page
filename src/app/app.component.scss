@@ -9,3 +9,9 @@ header {
       margin: 0 auto;
     }
 }
+
+@include respond-small {
+  header {
+    padding-top: 14vw;
+  }
+}

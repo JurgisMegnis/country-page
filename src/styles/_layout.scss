@@ -1,6 +1,16 @@
+@import 'media-query';
+
 body {
   background-image: url("../../public/hero-image.jpg");
   background-repeat: no-repeat;
   background-size: 100% auto;
   background-color: $grey-400;
+}
+
+@include respond-small {
+  body {
+    background-image: url("../../public/hero-image-sm.jpg");
+    background-size: 200% auto;
+    background-position: center top;
+  }
 }
