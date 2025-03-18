@@ -1,20 +1,28 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { CountriesService } from '../../services/countries.service';
 import { CountryDetailInfo } from '../../interfaces/country-info';
 import { Observable, map, switchMap, forkJoin, of } from 'rxjs';
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'app-country-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ButtonComponent],
   templateUrl: './country-detail.component.html',
   styleUrl: './country-detail.component.scss'
 })
 export class CountryDetailComponent implements OnInit {
+  // Observables for country details
   countryDetails$!: Observable<CountryDetailInfo>;
   borderCountryDetails$!: Observable<CountryDetailInfo[]>;
+
+  // variable getting country ID 
+  countryId!: string;
+
+  // error message
+  error: string | null = null;
 
   constructor(
     public route: ActivatedRoute,
@@ -22,9 +30,14 @@ export class CountryDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const countryId = this.route.snapshot.params['id'];
-    this.countryDetails$ = this.countriesService.getCountryById(countryId);
+    this.countryId = this.route.snapshot.params['id'];
+    this.countryDetails$ = this.countriesService.getCountryById(this.countryId);
+    this.error = this.countriesService.error();
     this.getBorderCountries();
+
+    if (this.error) {
+      console.log(this.error);
+    }
   }
 
   getLanguages(languages: CountryDetailInfo['languages']) {

@@ -98,6 +98,21 @@
                     }
                 }
             }
+
+            .error {
+                /* height: 30vh; */
+                height: 500px;
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+                justify-content: center;
+                align-items: center;
+
+                p {
+                    color: $grey-100;
+                    @include body-semibold;
+                }
+            }
         }
     }
 }
