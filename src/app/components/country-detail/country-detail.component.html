@@ -6,16 +6,18 @@
         <h2>{{countryDetails.name.official}}</h2>
     </header>
     <section class="main-facts">
-        <div class="population">
+        <div class="population main-facts-item">
             <p class="label">Population</p>
+            <div class="divider"></div>
             <p class="info">{{countryDetails.population.toLocaleString()}}</p>
         </div>
-        <div class="area">
+        <div class="area main-facts-item">
             <p class="label">Area(km²)</p>
+            <div class="divider"></div>
             <p class="info">{{countryDetails.area.toLocaleString()}}</p>
         </div>
     </section>
-    <section class="exta-facts">
+    <section class="extra-facts">
         <div class="capital extra-facts-item">
             <p class="label">Capital</p>
             <p class="info">{{countryDetails.capital}}</p>
@@ -38,12 +40,16 @@
         </div>
         <div class="neighbours extra-facts-item">
             <p class="label">Neighbouring Countries</p>
-            @if (borderCountryDetails$ | async; as countries) {
-                @for (country of countries; track country) {
-                    <img [src]="country.flags.svg" [alt]="country.flags.alt">
-                    <p class="info">{{country.name.common}}</p>
+            <div class="info">
+            @if (borderCountryDetails$ | async; as borderCountries) {
+                @for (country of borderCountries; track country) {
+                    <div class="info-item">
+                        <img [src]="country.flags.svg" [alt]="country.flags.alt">
+                        <p class="info-name">{{country.name.common}}</p>
+                    </div>
                 }
             }
+        </div>
         </div>
     </section>
 } 

@@ -37,34 +37,28 @@ export class CountryDetailComponent implements OnInit {
       .join(', ');
   }
 
-  /* private getBorderCountries() {
-    this.borderCountryDetails$ = this.countryDetails$.pipe(
-      map(data => data.borders),
-      switchMap(borders =>
-        borders.length ?
-        forkJoin(
-          borders.map(code => this.countriesService.getCountryById(code))
-        ) :
-        of([])
-      )
-    )
-  } */
-
+  // function that gives access to countries bordering the selected country
   private getBorderCountries() {
+    // start with countryDetails$ Observable
     this.borderCountryDetails$ = this.countryDetails$.pipe(
+      // return only the borders array from the country details
       map((data) => {
         return data.borders;
       }),
 
+      // take the array of borders and transform into an array of country detail Observables
       switchMap((borders) => {
-        
+        // check if there are any borders
         if (borders.length > 0) {
+          // one Observable for each border
           const borderRequests = borders.map((code) => {
             return this.countriesService.getCountryById(code);
           });
           
+          // wait for all of the requests to complete
           return forkJoin(borderRequests);
         } else {
+          // if there are no borders return an empty array
           return of([])
         }
       })
