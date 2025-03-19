@@ -1,14 +1,13 @@
-import { Injectable, signal, computed, } from '@angular/core';
+import { Injectable, signal, computed, Signal, } from '@angular/core';
 import { CountryDetailInfo, CountryListInfo } from '../interfaces/country-info';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, catchError, retry, throwError, map } from 'rxjs';
+import { Observable, catchError, retry, throwError, map, forkJoin } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CountriesService {
   private readonly URL = 'https://restcountries.com/v3.1/all?sort=population';
-  private readonly DETAIL_URL = 'https://restcountries.com/v3.1/alpha/';
 
   // private writable signals
   private countryListSignal = signal<CountryListInfo[]>([]);
@@ -51,15 +50,6 @@ export class CountriesService {
     return [...new Set(fullRegionsArray)].sort((a, b) =>
       a.localeCompare(b),
     ); // remove all of the duplicate values and sort the array
-  }
-
-  // get a detailed info about the country from their id (cca3 code)
-  getCountryById(id: string): Observable<CountryDetailInfo> {
-    return this.http.get<CountryDetailInfo[]>(this.DETAIL_URL + id).pipe(
-      map(response => response[0]), // transform the array in a single object
-      retry(2),
-      catchError(this.handleError)
-    );
   }
 
   private getAllCountryListData(): Observable<CountryListInfo[]> {

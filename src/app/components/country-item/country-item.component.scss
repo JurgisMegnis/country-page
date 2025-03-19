@@ -1,14 +1,32 @@
 @import '../../../styles/styles.scss';
 
 :host {
-    display: grid;
-    grid-template-columns: 0.3fr repeat(4, 1fr);
-    align-items: center;
+    display: block;
     margin-bottom: 24px;
     color: $grey-100;
     @include body-medium;
-    height: 38px;
     
+    
+    a {
+        display: grid;
+        grid-template-columns: 0.3fr repeat(4, 1fr);
+        align-items: center;
+        height: 38px;
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+        width: 100%;
+
+        &:hover {
+            opacity: .7;
+            color: $blue;
+
+            .name {
+                color: $blue;
+            }
+        }
+      }
+      
     .flag-container {
         width: 100%;
         height: 100%;
@@ -28,7 +46,11 @@
 
 @include respond-medium {
     :host {
-        grid-template-columns: .4fr repeat(2, 1fr) .5fr;
+
+        a {
+            grid-template-columns: .4fr repeat(2, 1fr) .5fr;
+        }
+
         .region-container {
             display: none;
         }
