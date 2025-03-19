@@ -1,21 +1,22 @@
-<div class="flag-container">
-    @if (countryItem.flags.alt) {
-        <img [src]="countryItem.flags.svg" [alt]="countryItem.flags.alt" class="flag">
-    } @else {
-        <img [src]="countryItem.flags.svg" alt="The flag of {{countryItem.name}}" class="flag">
-    }
-</div>
-<div class="name-container">
-    <p class="name">{{countryItem.name.common}}</p>
-</div>
-<div class="population-container">
-    <p class="population">{{countryItem.population}}</p>
-</div>
-<div class="area-container">
-    <p class="area">{{countryItem.area}}</p>
-</div>
-<div class="region-container">
-    <p class="region">{{countryItem.region}}</p>
-</div>
-<a [routerLink]="['/details', countryItem.cca3]">{{countryItem.name.common}}</a>
+<a [routerLink]="['/details', countryItem.cca3]">
+    <div class="flag-container">
+        @if (countryItem.flags.alt) {
+            <img [src]="countryItem.flags.svg" [alt]="countryItem.flags.alt" class="flag">
+        } @else {
+            <img [src]="countryItem.flags.svg" alt="The flag of {{countryItem.name}}" class="flag">
+        }
+    </div>
+    <div class="name-container">
+        <p class="name">{{countryItem.name.common}}</p>
+    </div>
+    <div class="population-container">
+        <p class="population">{{countryItem.population}}</p>
+    </div>
+    <div class="area-container">
+        <p class="area">{{countryItem.area}}</p>
+    </div>
+    <div class="region-container">
+        <p class="region">{{countryItem.region}}</p>
+    </div>
+</a>
 

@@ -27,7 +27,7 @@
                 </div>
                 <div class="country-list">
                     @for (country of filteredCountryItemList; track country.cca3) {
-                        @defer (on viewport; prefetch on idle) {
+                        @defer (on immediate; prefetch on idle) {
                             <app-country-item [countryItem]="country"></app-country-item>
                         } @loading (after 100ms; minimum 500ms) {
                             <section class="country-item-loader">
