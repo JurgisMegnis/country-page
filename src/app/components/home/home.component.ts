@@ -88,6 +88,7 @@ export class HomeComponent implements OnInit {
   filter(filterProp: Array<(item: CountryListInfo) => boolean>) {
     this.filteredCountryItemList = this.countryItemList.filter(property =>
       filterProp.every(filter => filter(property)));  
+    this.sort();
   }
 
   
